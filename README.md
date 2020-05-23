@@ -1,3 +1,5 @@
+<p align="center"><img src="indigo-player-center-buttons.png" alt="Center Buttons"/></p> 
+
 <p align="center">
   <a href="https://github.com/matvp91/indigo-player">
     <img align="center" src="https://raw.githubusercontent.com/matvp91/indigo-player/master/docs/indigo-player.png">

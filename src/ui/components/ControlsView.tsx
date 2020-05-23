@@ -1,3 +1,4 @@
+import { Icon } from '@src/ui/components/Icon';
 import { Button } from '@src/ui/components/Button';
 import { Center } from '@src/ui/components/Center';
 import { Nod } from '@src/ui/components/Nod';
@@ -14,6 +15,7 @@ interface ControlsViewProps {
   isCenterClickAllowed: boolean;
   showRebuffer: boolean;
   playIcon: string;
+  mainPlayIcon: string,
   rewindIcon: string;
   forwardIcon: string;
   playTooltipText: string;
@@ -43,7 +45,21 @@ interface ControlsViewProps {
 export const ControlsView = withState((props: ControlsViewProps) => {
   return (
     <>
-      <Nod />
+      <Button
+        name="rewind"
+        icon={props.rewindIcon}
+        onClick={props.startRewind}
+      />
+      <Button
+        name="playorpause"
+        icon={props.mainPlayIcon}
+        onClick={props.playOrPause}
+      />
+      <Button
+        name="forward"
+        icon={props.forwardIcon}
+        onClick={props.startForward}
+      />
       <Settings />
       {props.isCenterClickAllowed && <Center />}
       {props.showRebuffer && <Rebuffer />}
@@ -54,7 +70,7 @@ export const ControlsView = withState((props: ControlsViewProps) => {
           onClick={props.playOrPause}
           tooltip={props.playTooltipText}
         />
-        {props.rewind > 0 && (
+        {/* {props.rewind > 0 && (
           <Button
             name="rewind"
             icon={props.rewindIcon}
@@ -69,7 +85,7 @@ export const ControlsView = withState((props: ControlsViewProps) => {
             onClick={props.startForward}
             tooltip={props.forwardTooltipText}
           />
-        )}
+        )} */}
         <VolumeButton />
         <TimeStat />
         <div className="igui_container_controls_seekbar">
@@ -84,14 +100,14 @@ export const ControlsView = withState((props: ControlsViewProps) => {
             tooltip={props.subtitleToggleTooltipText}
           />
         )}
-        {props.showPip && (
+        {/* {props.showPip && (
           <Button
             name="pip"
             icon="pip"
             onClick={props.togglePip}
             tooltip={props.pipTooltipText}
           />
-        )}
+        )} */}
         <Button
           name="settings"
           icon="settings"
@@ -115,14 +131,15 @@ function mapProps(info: IInfo): ControlsViewProps {
   const createTooltipText = (text: string, shortcut?: string) => {
     return `${info.data.getTranslation(text)} ${
       shortcut ? `(${shortcut})` : ''
-    }`.trim();
+      }`.trim();
   };
-  
+
   return {
     isCenterClickAllowed: info.data.isCenterClickAllowed,
     isSettingsTabActive: info.data.settingsTab !== SettingsTabs.NONE,
     showRebuffer: info.data.rebuffering,
     playIcon: info.data.playRequested ? 'pause' : 'play',
+    mainPlayIcon: info.data.playRequested ? 'center_pause' : 'center_play',
     rewindIcon: 'rewind',
     forwardIcon: 'forward',
     playOrPause: info.actions.playOrPause,
@@ -130,17 +147,16 @@ function mapProps(info: IInfo): ControlsViewProps {
     startForward: info.actions.forward,
     playTooltipText: createTooltipText(
       info.data.playRequested ? 'Pause' : 'Play',
-      'k',
     ),
     rewindTooltipText: createTooltipText(
       info.data.getTranslation('Rewind {s} seconds', {
         s: 10
-      }), '←'
+      })
     ),
     forwardTooltipText: createTooltipText(
       info.data.getTranslation('Forward {s} seconds', {
         s: 10
-      }), '→'
+      })
     ),
     showSubtitlesToggle: !!info.data.subtitles.length,
     isSubtitleActive: !!info.data.activeSubtitle,

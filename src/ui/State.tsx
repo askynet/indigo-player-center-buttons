@@ -163,13 +163,11 @@ export class StateStore
     this.setState({ nodPurpose: null }, () => {
       if (this.nodTimer) {
         clearTimeout(this.nodTimer);
-        this.nodTimer = null;
       }
       this.setState({ nodPurpose: purpose }, () => {
         this.nodTimer = (window as any).setTimeout(() => {
           this.setState({ nodPurpose: null });
-          this.nodTimer = null;
-        }, 500);
+        }, 2000);
       });
     });
   };

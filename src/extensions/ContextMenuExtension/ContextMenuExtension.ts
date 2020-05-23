@@ -34,45 +34,22 @@ export class ContextMenuExtension extends Module {
   }
 
   public addItem(html: string, onClick: any) {
-    const item = document.createElement('button');
-    item.innerHTML = html;
-    item.addEventListener('click', onClick);
-    this.contextMenu.appendChild(item);
+    //const item = document.createElement('button');
+    //item.innerHTML = html;
+    //item.addEventListener('click', onClick);
+    //this.contextMenu.appendChild(item);
   }
 
   private onContextMenu = event => {
     event.preventDefault();
 
-    this.contextMenu.style.left = 'initial';
-    this.contextMenu.style.right = 'initial';
-    this.contextMenu.style.top = 'initial';
-    this.contextMenu.style.bottom = 'initial';
-    this.contextMenu.style.opacity = '1';
-    this.contextMenu.style.pointerEvents = 'auto';
 
-    const rect = this.instance.container.getBoundingClientRect();
-
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    if (x + this.contextMenu.offsetWidth >= rect.width) {
-      this.contextMenu.style.right = rect.width - x + 'px';
-    } else {
-      this.contextMenu.style.left = x + 'px';
-    }
-
-    if (y + this.contextMenu.offsetHeight >= rect.height) {
-      this.contextMenu.style.bottom = rect.height - y + 'px';
-    } else {
-      this.contextMenu.style.top = y + 'px';
-    }
-
-    window.addEventListener('click', this.onClick);
+   // window.addEventListener('click', this.onClick);
   };
 
   private onClick = () => {
-    this.contextMenu.style.opacity = '0';
-    this.contextMenu.style.pointerEvents = 'none';
-    window.removeEventListener('click', this.onClick);
+    //this.contextMenu.style.opacity = '0';
+    //this.contextMenu.style.pointerEvents = 'none';
+   // window.removeEventListener('click', this.onClick);
   };
 }

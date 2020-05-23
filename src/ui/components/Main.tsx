@@ -10,6 +10,8 @@ import cx from 'classnames';
 import * as React from 'react';
 
 interface MainProps {
+  heading: string,
+  subHeading: string,
   view: ViewTypes;
   isMobile: boolean;
   visibleControls: boolean;
@@ -27,6 +29,10 @@ export const Main = withState(
         'igui_state-fullscreen': props.isFullscreen,
       })}
     >
+      <div className="title-section">
+        <label className="title-name">{props.heading}</label><br />
+        <label className="title-sub">{props.subHeading||''}</label>
+      </div>
       {props.view === ViewTypes.ERROR && <ErrorView />}
       {props.view === ViewTypes.LOADING && <LoadingView />}
       {props.view === ViewTypes.START && <StartView />}
@@ -38,6 +44,8 @@ export const Main = withState(
 
 function mapProps(info: IInfo): MainProps {
   return {
+    heading: info.data.heading,
+    subHeading: info.data.subHeading,
     view: info.data.view,
     isMobile: info.data.isMobile,
     visibleControls: info.data.visibleControls,

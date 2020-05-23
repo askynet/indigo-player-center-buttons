@@ -1,6 +1,8 @@
 .igui_spinner {
-  width: 32px;
-  height: 32px;
+  margin-left: 13px;
+    margin-top: 15px;
+    width: 50px;
+    height: 50px;
   border-radius: 100%;
   border: 4px solid rgba(255, 255, 255, 0.2);
   border-top-color: #ffffff;
@@ -10,5 +12,11 @@
 @keyframes spin {
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 500px){
+  .igui_spinner {
+    margin-left: 0px;
   }
 }

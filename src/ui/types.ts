@@ -2,6 +2,8 @@ import { PlayerError } from '@src/PlayerError';
 import { IThumbnail, ITrack, Subtitle } from '@src/types';
 
 export interface IData {
+  heading : string,
+  subHeading : string,
   paused: boolean;
   view: ViewTypes;
   visibleControls: boolean;
