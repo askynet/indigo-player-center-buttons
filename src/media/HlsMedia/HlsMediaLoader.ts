@@ -26,7 +26,7 @@ export const HlsMediaLoader = {
     }
 
     if (instance.env.isSafari || instance.env.isIOS) {
-      return false;
+      //return false;
     }
 
     if (!isSupported()) {
