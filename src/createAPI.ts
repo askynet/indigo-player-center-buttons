@@ -1,5 +1,5 @@
 import { PlayerError } from '@src/PlayerError';
-import { EventCallback, IEventData, IInstance, ITrack } from '@src/types';
+import { EventCallback, IEventData, IInstance, ITrack, AudioLang } from '@src/types';
 import { createFunctionFn } from '@src/utils/defineProperty';
 
 /**
@@ -56,7 +56,7 @@ export function createAPI(instance: IInstance) {
     // Select an audio language
     [
       'selectAudioLanguage',
-      (language: string) => instance.selectAudioLanguage(language),
+      (language: AudioLang) => instance.selectAudioLanguage(language),
     ],
 
     // Select playback rate

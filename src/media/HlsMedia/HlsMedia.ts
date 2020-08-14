@@ -46,7 +46,6 @@ export class HlsMedia extends Media {
         this.emit(Events.MEDIA_STATE_AUDIOLANGUAGES, {
           audioLanguages,
         } as IAudioLanguagesEventData);
-        // this.selectAudioLanguage(audioLanguages[1]['name']);
       } catch (e) {
         console.log(`audioLanguages error`, e);
       }

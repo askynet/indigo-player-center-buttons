@@ -1,5 +1,5 @@
 import { Module } from '@src/Module';
-import { IMedia, ITrack } from '@src/types';
+import { IMedia, ITrack, AudioLang } from '@src/types';
 
 export class Media extends Module implements IMedia {
   public async load() {}
@@ -24,7 +24,7 @@ export class Media extends Module implements IMedia {
 
   public selectTrack(track: ITrack) {}
 
-  public selectAudioLanguage(language: string) {}
+  public selectAudioLanguage(language: AudioLang) {}
 
   public setPlaybackRate(playbackRate: number) {
     this.instance.player.setPlaybackRate(playbackRate);

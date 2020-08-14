@@ -7,6 +7,7 @@ import {
   IInstance,
   ITrack,
   Subtitle,
+  AudioLang,
 } from '@src/types';
 import produce from 'immer';
 import find from 'lodash/find';
@@ -52,7 +53,8 @@ export interface IState {
 
   playbackRate: number;
 
-  audioLanguages: string[];
+  activeAudio: AudioLang;
+  audioLanguages: AudioLang[];
 
   width: number;
   height: number;
@@ -105,8 +107,10 @@ export class StateExtension extends Module {
     subtitle: null,
     subtitleText: null,
 
+
     playbackRate: 1,
 
+    activeAudio: null,
     audioLanguages: [],
 
     width: null,
@@ -375,9 +379,15 @@ export class StateExtension extends Module {
 
     const setAudioLanguages = this.dispatch((draft, data) => {
       draft.audioLanguages = data.audioLanguages;
-      console.log(`setAudioLanguages`,draft.audioLanguages);
+      console.log(`setAudioLanguages`, draft.audioLanguages);
     });
     this.on(Events.MEDIA_STATE_AUDIOLANGUAGES, setAudioLanguages);
+
+    const setAudioLanguage = this.dispatch((draft, data) => {
+      console.log(`MEDIA_STATE_AUDIOLANGUAGECHANGE-CHANGE`,data);
+      draft.activeAudio = data.audio;
+    });
+    this.on(Events.MEDIA_STATE_AUDIOLANGUAGECHANGE, setAudioLanguage);
 
     const setDimensions = this.dispatch((draft, data) => {
       draft.width = data.width;

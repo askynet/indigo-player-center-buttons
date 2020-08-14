@@ -51,6 +51,7 @@ export class BaseController extends Controller {
   }
 
   public selectAudioLanguage(language: AudioLang) {
+    console.log(`BaseController-selectAudioLanguage`,language);
     this.instance.media.selectAudioLanguage(language);
   }
 

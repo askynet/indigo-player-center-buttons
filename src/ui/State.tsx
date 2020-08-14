@@ -258,6 +258,7 @@ export class StateStore
     this.props.instance.selectTrack(track);
   };
   private selectAudioLanguage = (audio: AudioLang) => {
+    console.log(`STATE-selectAudioLanguage`,audio);
     this.props.instance.selectAudioLanguage(audio);
   }
 

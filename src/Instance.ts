@@ -119,7 +119,8 @@ export class Instance implements IInstance {
     this.controller.selectTrack(track);
   }
 
-  public selectAudioLanguage(language: any) {
+  public selectAudioLanguage(language: AudioLang) {
+    console.log(`intance-selectAudioLanguage`,language);
     this.controller.selectAudioLanguage(language);
   }
 

@@ -1,4 +1,4 @@
-import { IInstance } from '../../src/types';
+import { IInstance, AudioLang } from '../../src/types';
 import { any } from 'prop-types';
 
 /**
@@ -60,7 +60,7 @@ export class Instance implements IInstance {
   seekTo(time: number) {}
   setVolume(volume: number) {}
   selectTrack(track: any) {}
-  selectAudioLanguage(language: string) {}
+  selectAudioLanguage(language: AudioLang) {}
   setPlaybackRate(playbackRate: number) {}
   destroy() {}
 

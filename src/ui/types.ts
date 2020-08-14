@@ -36,8 +36,10 @@ export interface IData {
   visibleSettingsTabs: SettingsTabs[];
   subtitles: Subtitle[];
   activeSubtitle: Subtitle;
-  audioLanguages : AudioLang[];
+
   activeAudio: AudioLang;
+  audioLanguages : AudioLang[];
+  
   playbackRate: number;
   pip: boolean;
   pipSupported: boolean;
@@ -66,7 +68,7 @@ export interface IActions {
   setSeekbarState(state: any);
   setVolumebarState(state: any);
   selectTrack(track: ITrack);
-  setAudio(audio:string);
+  setAudioLanguage(audio:AudioLang);
   setSettingsTab(tab: SettingsTabs);
   toggleSettings();
   selectSubtitle(subtitle: Subtitle);
