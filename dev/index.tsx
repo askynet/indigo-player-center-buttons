@@ -18,10 +18,33 @@ const player = IndigoPlayer.init(
     aspectRatio: 16 / 9,
     // volume: 0.5,
     // startPosition: 100,
+    audioLanguages: [{
+      id: 'my-1',
+      kind: 'translation',
+      label: 'kannada',
+      language: 'kannada',
+      audio: 'https://cdnjs.cloudflare.com/ajax/libs/ion-sound/3.0.7/sounds/glass.mp3',
+    },
+
+    {
+      id: 'my-2',
+      kind: 'translation',
+      label: 'tamil',
+      language: 'tamil',
+      audio: 'https://cdnjs.cloudflare.com/ajax/libs/ion-sound/3.0.7/sounds/door_bump.mp3',
+    },
+
+    {
+      id: 'my-3',
+      kind: 'translation',
+      label: 'marathi',
+      language: 'marathi',
+      audio: 'https://cdnjs.cloudflare.com/ajax/libs/ion-sound/3.0.7/sounds/camera_flashing_2.mp3',
+    }],
     ui: {
       pip: true,
       lockControlsVisibility: false,
-      locale: 'fr-FR',
+      locale: 'en-US',
       image: 'https://peach.blender.org/wp-content/uploads/rodents2.png?x11217',
       rewind: 30,
       forward: 30
@@ -72,11 +95,11 @@ const player = IndigoPlayer.init(
       //   src:
       //     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
       // },
-      {
-        type: 'mp4',
-        src:
-          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      },
+      // {
+      //   type: 'mp4',
+      //   src:
+      //     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      // },
       // {
       //   type: 'mp4',
       //   src:
@@ -105,10 +128,14 @@ const player = IndigoPlayer.init(
       //   type: 'dash',
       //   src: 'http://dash.edgesuite.net/akamai/bbb_30fps/bbb_30fps.mpd',
       // },
+      {
+        type: 'hls',
+        src:
+          'http://d3rlna7iyyu8wu.cloudfront.net/skip_armstrong/skip_armstrong_multi_language_subs.m3u8',
+      },
       // {
       //   type: 'hls',
-      //   src:
-      //     'https://bitmovin-a.akamaihd.net/content/art-of-motion_drm/m3u8s/11331.m3u8',
+      //   src: "https://sproutvideo-examples.s3.amazonaws.com/bad_hls/wayne.m3u8"
       // },
       // {
       //   type: 'webm',
@@ -141,7 +168,7 @@ const player = IndigoPlayer.init(
         srclang: 'de',
         src: './bbb-de-subs.vtt',
       },
-    ],
+    ]
   },
 );
 (window as any).player = player;
