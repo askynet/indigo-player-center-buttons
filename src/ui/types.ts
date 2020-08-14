@@ -36,6 +36,8 @@ export interface IData {
   visibleSettingsTabs: SettingsTabs[];
   subtitles: Subtitle[];
   activeSubtitle: Subtitle;
+  audioLanguages : AudioLang[];
+  activeAudio: AudioLang;
   playbackRate: number;
   pip: boolean;
   pipSupported: boolean;
@@ -64,10 +66,12 @@ export interface IActions {
   setSeekbarState(state: any);
   setVolumebarState(state: any);
   selectTrack(track: ITrack);
+  setAudio(audio:string);
   setSettingsTab(tab: SettingsTabs);
   toggleSettings();
   selectSubtitle(subtitle: Subtitle);
   setPlaybackRate(playbackRate: number);
+  selectAudioLanguage(audio: AudioLang);
   togglePip();
   toggleActiveSubtitle();
 }
@@ -90,8 +94,14 @@ export enum SettingsTabs {
   TRACKS,
   SUBTITLES,
   PLAYBACKRATES,
+  AUDIOS
 }
-
+export interface AudioLang {
+  id : number;
+  lang: string;
+  name: string;
+  url : string
+}
 export interface IStateStore {
   showControls();
 }

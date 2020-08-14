@@ -1,5 +1,5 @@
 import { Module } from '@src/Module';
-import { IPlayer } from '@src/types';
+import { IPlayer, AudioLang } from '@src/types';
 
 export class Player extends Module implements IPlayer {
   public load() {}
@@ -17,4 +17,6 @@ export class Player extends Module implements IPlayer {
   public setSource(src: string) {}
 
   public setPlaybackRate(playbackRate: number) {}
+
+  public selectAudioLanguage(language: AudioLang) {}
 }

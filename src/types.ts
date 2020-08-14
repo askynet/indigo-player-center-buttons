@@ -209,6 +209,12 @@ export interface ITrack {
   bandwidth: number;
 }
 
+export interface AudioLang {
+  id : number;
+  lang: string;
+  name: string;
+  url : string
+}
 // Ads
 
 export interface IAdBreak {
@@ -375,7 +381,7 @@ export interface IController extends IModule {
   seekTo(time: number);
   setVolume(volume: number);
   selectTrack(track: ITrack);
-  selectAudioLanguage(language: string);
+  selectAudioLanguage(language: AudioLang);
   setPlaybackRate(playbackRate: number);
 }
 
@@ -402,7 +408,7 @@ export interface IMedia extends IModule {
   seekTo(time: number);
   setVolume(volume: number);
   selectTrack(track: ITrack);
-  selectAudioLanguage(language: string);
+  selectAudioLanguage(language: AudioLang);
   setPlaybackRate(playbackRate: number);
 }
 
@@ -431,7 +437,7 @@ export interface IInstance {
   seekTo(time: number);
   setVolume(volume: number);
   selectTrack(track: ITrack);
-  selectAudioLanguage(language: string);
+  selectAudioLanguage(language: AudioLang);
   setPlaybackRate(playbackRate: number);
   destroy();
 

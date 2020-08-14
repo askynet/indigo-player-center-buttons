@@ -6,6 +6,7 @@ import {
   Events,
   Format,
   ITrack,
+  IAudioLanguagesEventData,
   ITrackChangeEventData,
   ITracksEventData,
 } from '@src/types';
@@ -30,6 +31,7 @@ export class HlsMedia extends Media {
     this.player.attachMedia(mediaElement);
 
     this.player.on(HlsJs.Events.MANIFEST_PARSED, (event, data) => {
+      console.log(`data`, data);
       const tracks = data.levels
         .map(this.formatTrack)
         .sort((a, b) => b.bandwidth - a.bandwidth);
@@ -37,6 +39,19 @@ export class HlsMedia extends Media {
       this.emit(Events.MEDIA_STATE_TRACKS, {
         tracks,
       } as ITracksEventData);
+
+      try {
+        const audioLanguages = data.audioTracks || [];
+        console.log(`audioLanguages`, audioLanguages);
+        this.emit(Events.MEDIA_STATE_AUDIOLANGUAGES, {
+          audioLanguages,
+        } as IAudioLanguagesEventData);
+        // this.selectAudioLanguage(audioLanguages[1]['name']);
+      } catch (e) {
+        console.log(`audioLanguages error`, e);
+      }
+
+
     });
 
     this.player.on(HlsJs.Events.LEVEL_SWITCHED, (event, data) => {

@@ -1,7 +1,7 @@
 import { Controller } from '@src/controller/Controller';
 import { PlayerError } from '@src/PlayerError';
 import { selectMedia, selectPlayer } from '@src/selectModule';
-import { ErrorCodes, ITrack } from '@src/types';
+import { ErrorCodes, ITrack, AudioLang } from '@src/types';
 
 export class BaseController extends Controller {
   public name: string = 'BaseController';
@@ -50,7 +50,7 @@ export class BaseController extends Controller {
     this.instance.media.selectTrack(track);
   }
 
-  public selectAudioLanguage(language: string) {
+  public selectAudioLanguage(language: AudioLang) {
     this.instance.media.selectAudioLanguage(language);
   }
 

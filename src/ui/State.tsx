@@ -15,6 +15,7 @@ import {
   SettingsTabs,
   ViewTypes,
   IStateStore,
+  AudioLang,
 } from '@src/ui/types';
 import { attachEvents, EventUnsubscribeFn } from '@src/ui/utils/attachEvents';
 import { secondsToHMS } from '@src/ui/utils/secondsToHMS';
@@ -238,11 +239,11 @@ export class StateStore
       }
     }
   };
-  
+
   private rewind = () => {
     this.props.instance.seekTo(this.props.player.currentTime - this.props.instance.config.ui.rewind);
   }
-  
+
   private forward = () => {
     this.props.instance.seekTo(this.props.player.currentTime + this.props.instance.config.ui.forward);
   }
@@ -256,6 +257,9 @@ export class StateStore
   private selectTrack = (track: ITrack) => {
     this.props.instance.selectTrack(track);
   };
+  private selectAudioLanguage = (audio: AudioLang) => {
+    this.props.instance.selectAudioLanguage(audio);
+  }
 
   private setPlaybackRate = (playbackRate: number) => {
     this.props.instance.setPlaybackRate(playbackRate);
@@ -287,6 +291,7 @@ export class StateStore
   };
 
   private setSettingsTab = (settingsTab: SettingsTabs) => {
+    console.log(`settingsTab`, settingsTab);
     this.setState({ settingsTab });
   };
 
@@ -465,6 +470,19 @@ export class StateStore
       ),
       'height',
     );
+    const audioLanguages = uniqBy<AudioLang>(
+      this.props.player.audioLanguages.sort(
+        (a, b) => Number(b.name) - Number(a.name),
+      ),
+      'name',
+    );
+    let activeAudio = null;
+    if (this.props.player.audioLanguages) {
+      // activeAudio = audioLanguages.find(
+      //   audio => audio.id === this.props.player.audio.id,
+      // );
+    }
+
 
     let activeTrack = null;
     if (this.props.player.track) {
@@ -482,7 +500,7 @@ export class StateStore
 
     const activeSubtitle = this.props.player.subtitle;
 
-    const visibleSettingsTabs = [SettingsTabs.PLAYBACKRATES];
+    const visibleSettingsTabs = [SettingsTabs.PLAYBACKRATES, SettingsTabs.AUDIOS];
     if (subtitles.length) {
       visibleSettingsTabs.push(SettingsTabs.SUBTITLES);
     }
@@ -526,6 +544,8 @@ export class StateStore
       tracks,
       activeTrack,
       selectedTrack,
+      audioLanguages,
+      activeAudio,
       error,
       cuePoints,
       timeStatPosition,
@@ -580,6 +600,7 @@ export class StateStore
       setSeekbarState: this.setSeekbarState,
       setVolumebarState: this.setVolumebarState,
       selectTrack: this.selectTrack,
+      selectAudioLanguage: this.selectAudioLanguage,
       setSettingsTab: this.setSettingsTab,
       toggleSettings: this.toggleSettings,
       selectSubtitle: this.selectSubtitle,

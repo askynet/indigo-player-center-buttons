@@ -375,6 +375,7 @@ export class StateExtension extends Module {
 
     const setAudioLanguages = this.dispatch((draft, data) => {
       draft.audioLanguages = data.audioLanguages;
+      console.log(`setAudioLanguages`,draft.audioLanguages);
     });
     this.on(Events.MEDIA_STATE_AUDIOLANGUAGES, setAudioLanguages);
 

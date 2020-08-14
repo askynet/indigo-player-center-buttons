@@ -20,6 +20,7 @@ import {
   IPlayerError,
   ITrack,
   ModuleLoaderTypes,
+  AudioLang,
 } from '@src/types';
 import { getEnv } from '@src/utils/getEnv';
 import { log } from '@src/utils/log';
@@ -118,7 +119,7 @@ export class Instance implements IInstance {
     this.controller.selectTrack(track);
   }
 
-  public selectAudioLanguage(language: string) {
+  public selectAudioLanguage(language: any) {
     this.controller.selectAudioLanguage(language);
   }
 

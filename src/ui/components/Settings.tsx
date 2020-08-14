@@ -18,6 +18,13 @@ tabs[SettingsTabs.OPTIONS] = (props: SettingsProps) => (
               props.data.activeTrack ? props.data.activeTrack.width : ''
             }`,
           },
+          props.data.visibleSettingsTabs.includes(SettingsTabs.AUDIOS) && {
+            item: SettingsTabs.AUDIOS,
+            label: props.data.getTranslation('Audio'),
+            info: `${
+              props.data.activeAudio ? props.data.activeAudio.name : ''
+            }`,
+          },
           props.data.visibleSettingsTabs.includes(SettingsTabs.SUBTITLES) && {
             item: SettingsTabs.SUBTITLES,
             label: props.data.getTranslation('Subtitles'),
@@ -124,6 +131,32 @@ tabs[SettingsTabs.PLAYBACKRATES] = (props: SettingsProps) => (
         {
           item: 2,
           label: '2',
+        },
+      ]}
+    />
+  </>
+);
+
+tabs[SettingsTabs.AUDIOS] = (props: SettingsProps) => (
+  <>
+    <SettingsHeader
+      title={props.data.getTranslation('Audio')}
+      onBackClick={() => props.actions.setSettingsTab(SettingsTabs.OPTIONS)}
+    />
+    <SettingsSelect
+      selected={props.data.activeAudio}
+      onClick={activeAudio => {
+        props.actions.selectAudioLanguage(activeAudio);
+        props.actions.toggleSettings();
+      }}
+      items={[
+        ...props.data.audioLanguages.map(audio => ({
+          item: audio,
+          label: audio.name,
+        })),
+        {
+          item: null,
+          label: props.data.getTranslation('No audios'),
         },
       ]}
     />
