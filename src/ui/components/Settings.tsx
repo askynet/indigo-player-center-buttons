@@ -156,7 +156,7 @@ tabs[SettingsTabs.AUDIOS] = (props: SettingsProps) => (
         })),
         {
           item: null,
-          label: props.data.getTranslation('No audios'),
+          label: props.data.getTranslation('Default'),
         },
       ]}
     />
