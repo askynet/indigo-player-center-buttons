@@ -10,6 +10,7 @@ import { StateExtensionLoader } from '@src/extensions/StateExtension/StateExtens
 import { SubtitlesExtensionLoader } from '@src/extensions/SubtitlesExtension/SubtitlesExtensionLoader';
 import { ThumbnailsExtensionLoader } from '@src/extensions/ThumbnailsExtension/ThumbnailsExtensionLoader';
 import { DimensionsExtensionLoader } from '@src/extensions/DimensionsExtension/DimensionsExtensionLoader';
+import { AudioExtensionLoader } from '@src/extensions/AudioExtension/AudioExtensionLoader';
 import { BaseMediaLoader } from '@src/media/BaseMedia/BaseMediaLoader';
 import { DashMediaLoader } from '@src/media/DashMedia/DashMediaLoader';
 import { HlsMediaLoader } from '@src/media/HlsMedia/HlsMediaLoader';
@@ -39,6 +40,7 @@ const modules: Array<IModuleLoader<IModule>> = [
   FreeWheelExtensionLoader,
   FullscreenExtensionLoader,
   SubtitlesExtensionLoader,
+  // AudioExtensionLoader, // new
   GoogleIMAExtensionLoader,
   ThumbnailsExtensionLoader,
   KeyboardNavigationExtensionLoader,

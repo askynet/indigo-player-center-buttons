@@ -21,6 +21,7 @@ import { attachEvents, EventUnsubscribeFn } from '@src/ui/utils/attachEvents';
 import { secondsToHMS } from '@src/ui/utils/secondsToHMS';
 import uniqBy from 'lodash/uniqBy';
 import React, { RefObject } from 'react';
+import { Module } from '@src/Module';
 
 export const StateContext = React.createContext({});
 
@@ -257,8 +258,17 @@ export class StateStore
   private selectTrack = (track: ITrack) => {
     this.props.instance.selectTrack(track);
   };
-  private selectAudioLanguage = (audio: AudioLang) => {
-    console.log(`STATE-selectAudioLanguage`,audio);
+  
+  private selectAudioLanguage = (audio: AudioLang) => {  
+    try{
+      (this.props.instance.getModule('SubtitlesExtension') as any).setAudioLangauge(
+        audio ? audio : null,
+      );
+    }catch(e){
+      console.log(`selectAudioLanguage-error`,e);
+    }
+
+    console.log(`STATE-selectAudioLanguage`, audio);
     this.props.instance.selectAudioLanguage(audio);
   }
 
@@ -477,13 +487,8 @@ export class StateStore
       ),
       'name',
     );
-    let activeAudio = null;
-    if (this.props.player.audioLanguages) {
-      // activeAudio = audioLanguages.find(
-      //   audio => audio.id === this.props.player.audio.id,
-      // );
-    }
-
+    // console.log(`player`,this.props.player);
+    let activeAudio = this.props.player.audio;
 
     let activeTrack = null;
     if (this.props.player.track) {

@@ -1,6 +1,6 @@
 import { Module } from '@src/Module';
 import { HTML5Player } from '@src/player/HTML5Player/HTML5Player';
-import { Events, IEventData, IInstance, Subtitle } from '@src/types';
+import { Events, IEventData, IInstance, Subtitle, AudioLang } from '@src/types';
 import { applyStyle, insertAfter } from '@src/utils/dom';
 import * as SubtitleParser from 'subtitle';
 import './subtitles.scss';
@@ -42,7 +42,25 @@ export class SubtitlesExtension extends Module {
 
     this.instance.on(Events.DIMENSIONS_CHANGE, this.onDimensionsChange);
   }
+  public async setAudioLangauge(audio: AudioLang) {
+    // const subtitle =
+    //   this.instance.config.subtitles.find(
+    //     subtitle => subtitle.srclang === srclang,
+    //   ) || null;
+    console.log(`emit auido change event`);
+    this.emit(Events.MEDIA_STATE_AUDIOLANGUAGECHANGE, {
+      audio,
+    });
 
+    // if (!audio) {
+    //   this.setActiveTimings(null);
+    // } else {
+    //   if (!audio) {
+    //     this.setActiveTimings(null);
+    //     return;
+    //   }
+    // }
+  }
   public async setSubtitle(srclang: string) {
     const subtitle =
       this.instance.config.subtitles.find(

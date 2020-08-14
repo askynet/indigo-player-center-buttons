@@ -11,6 +11,7 @@ import {
   ITrack,
   ITrackChangeEventData,
   ITracksEventData,
+  AudioLang,
 } from '@src/types';
 import * as shaka from 'shaka-player';
 
@@ -138,7 +139,7 @@ export class DashMedia extends Media {
     }
   }
 
-  public selectAudioLanguage(language: string) {
+  public selectAudioLanguage(language: AudioLang) {
     this.player.selectAudioLanguage(language);
   }
 

@@ -137,7 +137,7 @@ tabs[SettingsTabs.PLAYBACKRATES] = (props: SettingsProps) => (
   </>
 );
 
-tabs[SettingsTabs.AUDIOS] = (props: SettingsProps) => (
+tabs[SettingsTabs.AUDIOS] = (props: SettingsProps) => ( 
   <>
     <SettingsHeader
       title={props.data.getTranslation('Audio')}
@@ -221,6 +221,8 @@ interface SettingsProps {
 }
 
 export const Settings = withState((props: SettingsProps) => {
+  // console.log(`***Settings***`);
+  // console.log(props.data);
   const renderTab = tabs[props.data.settingsTab];
   return renderTab ? (
     <div className="igui_settings">
