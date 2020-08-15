@@ -258,14 +258,14 @@ export class StateStore
   private selectTrack = (track: ITrack) => {
     this.props.instance.selectTrack(track);
   };
-  
-  private selectAudioLanguage = (audio: AudioLang) => {  
-    try{
+
+  private selectAudioLanguage = (audio: AudioLang) => {
+    try {
       (this.props.instance.getModule('SubtitlesExtension') as any).setAudioLangauge(
         audio ? audio : null,
       );
-    }catch(e){
-      console.log(`selectAudioLanguage-error`,e);
+    } catch (e) {
+      console.log(`selectAudioLanguage-error`, e);
     }
 
     console.log(`STATE-selectAudioLanguage`, audio);
@@ -487,8 +487,10 @@ export class StateStore
       ),
       'name',
     );
-    // console.log(`player`,this.props.player);
-    let activeAudio = this.props.player.audio;
+    let activeAudio = null;
+    if (this.props.player.activeAudio) {
+      activeAudio = this.props.player.activeAudio;
+    }
 
     let activeTrack = null;
     if (this.props.player.track) {
