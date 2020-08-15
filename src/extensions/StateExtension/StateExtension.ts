@@ -538,6 +538,9 @@ export class StateExtension extends Module {
       if (prevState.audioLanguages !== this.state.audioLanguages) {
         push(Events.STATE_AUDIOLANGUAGES);
       }
+      if (prevState.activeAudio !== this.state.activeAudio) {
+        push(Events.STATE_AUDIOLANGUAGE_CHANGE);
+      }
 
       if (
         prevState.width !== this.state.width ||
