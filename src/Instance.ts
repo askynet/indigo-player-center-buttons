@@ -120,7 +120,6 @@ export class Instance implements IInstance {
   }
 
   public selectAudioLanguage(language: AudioLang) {
-    console.log(`intance-selectAudioLanguage`,language);
     this.controller.selectAudioLanguage(language);
   }
 

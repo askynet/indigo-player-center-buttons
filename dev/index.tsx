@@ -105,6 +105,10 @@ const player = IndigoPlayer.init(
       //   type: 'dash',
       //   src: 'http://dash.edgesuite.net/akamai/bbb_30fps/bbb_30fps.mpd',
       // },
+      // {
+      //   type : 'hls',
+      //   src : 'https://hls1.webcamera.pl/radlin_cam_3a81bf/radlin_cam_3a81bf.stream/playlist.m3u8'
+      // },
       {
         type: 'hls',
         src:
